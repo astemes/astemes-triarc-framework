@@ -1,0 +1,66 @@
+name: Test Runner
+on: [push]
+permissions:
+  contents: write
+concurrency:
+  group: lv2020
+  cancel-in-progress: false
+jobs:
+  checkout:
+    runs-on: lv2020
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+      - name: Checkout Tools
+        uses: actions/checkout@v4
+        with:
+          repository: astemes/astemes-github-actions
+          ref: main
+          path: ./.github/actions
+  test:
+    needs: checkout
+    runs-on: lv2020
+    steps:
+      - uses: astemes/astemes-github-actions/runLUnit@main
+        with:
+          project-path: "tests"
+  build:
+    needs: test
+    runs-on: lv2020
+    steps:
+      - uses: astemes/astemes-github-actions/buildLVBuildSpec@main
+        with:
+          project-path: "source\\TF.lvproj"
+          build-spec: "TF"
+      - name: Build MKDocs
+        uses: astemes/astemes-github-actions/buildDocs@main
+        with:
+            project-title: "Astemes Triarc Framework"
+            author: "Anton Sundqvist"
+            initial-release: "2021"
+  release:
+    needs: build
+    runs-on: lv2020
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Get version
+        id: get_version
+        uses: astemes/astemes-github-actions/getVersion@main
+      - name: Build VIP
+        id: build-vip
+        uses: astemes/astemes-github-actions/buildVIPackage@main
+        with:
+          vipb-path: "source\\Triarc Framework.vipb"
+          lv-version: "20.0"
+          pkg-version: "${{ steps.get_version.outputs.version }}"
+      - name: Release VIP
+        uses: astemes/astemes-github-actions/releaseFile@main
+        with:
+          file-path: "${{ steps.build-vip.outputs.artifact-path }}"
+      - name: Deploy GHPages
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          python -m mkdocs gh-deploy --force
+        shell: powershell
