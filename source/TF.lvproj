@@ -1199,12 +1199,6 @@
 				<Item Name="LUnit Runnable.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/Astemes/LUnit/LUnit Runnable.lvclass"/>
 				<Item Name="Test Suite.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/Astemes/LUnit/Test Suite.lvclass"/>
 				<Item Name="LUnit Inheriting Test Case.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/Astemes/LUnit Test Inheritance/LUnit Inheriting Test Case.lvclass"/>
-				<Item Name="Append Pass Result.vi" Type="VI" URL="/&lt;vilib&gt;/Astemes/LUnit/Append Pass Result.vi"/>
-				<Item Name="Append Fail Result.vi" Type="VI" URL="/&lt;vilib&gt;/Astemes/LUnit/Append Fail Result.vi"/>
-				<Item Name="Describe Comparison.vi" Type="VI" URL="/&lt;vilib&gt;/Astemes/LUnit/Describe Comparison.vi"/>
-				<Item Name="Compare Variants.vi" Type="VI" URL="/&lt;vilib&gt;/Astemes/LUnit/Compare Variants.vi"/>
-				<Item Name="Variant to string.vi" Type="VI" URL="/&lt;vilib&gt;/Astemes/LUnit/Variant to string.vi"/>
-				<Item Name="Describe Comparison of Arrays.vi" Type="VI" URL="/&lt;vilib&gt;/Astemes/LUnit/Describe Comparison of Arrays.vi"/>
 			</Item>
 			<Item Name="version.dll" Type="Document" URL="version.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
