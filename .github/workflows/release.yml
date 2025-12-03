@@ -12,6 +12,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+      - name: Checkout Tools
+        uses: actions/checkout@v4
+        with:
+          repository: astemes/astemes-github-actions
+          ref: main
+          path: ./.github/actions
   build:
     needs: checkout
     runs-on: lv2020
