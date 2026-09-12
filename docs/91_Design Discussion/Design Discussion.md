@@ -36,9 +36,9 @@ This means that global variables, functional global variables (FGVs), named queu
 By using strictly typed APIs, errors can be detected at compile time and the consequence of changes to a data type is clearer.
 API:s should therefore use strict typing whenever possible.
 
-### Open to Extenssion
+### Open to Extension
 
-Classes are to be open for extenssion without modifying the base, while keeping the base behaviour unchanged.
+Classes are to be open for extension without modifying the base, while keeping the base behaviour unchanged.
 Triarc provides mechanisms for overriding behavior by either overriding dynamic dispatch VI:s or by handling messages defined by parent processes.
 
 ### Everything in its Own Context
@@ -95,7 +95,7 @@ Under the hood, the API call enqueues a message to the Process, but the coupling
 
 Some frameworks give the option of sending messages with different priority levels.
 This adds significant complexity to the application since it increases the number of possible paths through the application.
-There are situations where a different priority message is usefull, but they should be rare.
+There are situations where a different priority message is useful, but they should be rare.
 
 Triarc provides the option of terminating a process by clearing it, so there is no need to send a high priority shutdown message.
 If it is not an emergency shutdown, it is in most cases better to shut down normally by stopping it and allowing each process to perform potential clean-up.

@@ -58,7 +58,7 @@ As mentioned earlier, this is handled by `TF` as synchronization mechanisms is i
 If a key is not found, the LabVIEW native configuration file functions returns a default value, which may be set by the developer.
 If a key is *e.g.* misspelled in the file, a user of the system will not get any kind of feedback on what the system is expecting from the configuration file and may cause a lot of pain.
 
-To mittigate this, `TF` will write the default value to the configuration file if the key was not found.
+To mitigate this, `TF` will write the default value to the configuration file if the key was not found.
 By doing this, missing keys will be added to the file and if the file is missing all together a file with default configurations will be created automatically.
 
 ### Lack of structure

@@ -16,12 +16,12 @@ The logged message will contain data on the process which called it.
 
 The framework calls the logging API at certain events, such as starting and stopping processes.
 These events are sent to the logger at the `INFO` severity level.
-Errors and warningsa are sent to the logger by the framework as they occur and these will occur with the `WARNING` or `ERROR` severity levels.
+Errors and warnings are sent to the logger by the framework as they occur and these will occur with the `WARNING` or `ERROR` severity levels.
 
 ## Handling Log Messages
 
 What to be done with logged messages is up to the user of the framework.
-The framework delegates the actual logging to a class implemeting the `Logging` interface.
+The framework delegates the actual logging to a class implementing the `Logging` interface.
 The class handling the logging is configured using the `Add Log Handler.vi` and it is possible to have multiple log handlers configured concurrently.
 The log handlers are configured recursively for processes within an application.
 
@@ -46,13 +46,13 @@ The meaning of the levels in the context of a Triarc Process is as follows.
 - `INFO` - Events containing information that the application is running as expected. If an error occurs upstreams from the `Log Info.vi`, the logging will be ignored.
 - `WARNING` - This event is invoked if a warning (error cluster with status == False and non-zero error code) occurs within the process.
 - `ERROR` - Invoked when an error occurs in the process and should be used to log errors.
-- `CRITICAL` - Invoked if called with an uppstreams error. Not used by the framework.
+- `CRITICAL` - Invoked if called with an upstream error. Not used by the framework.
 
 ## Framework Log Events
 
 If the `DEBUG` conditional disabled symbol is set to `True` the framework will log every message in the order they are received.
 
-The framework passes warnings and errors occuring in the process loop to the configured log handlers.
+The framework passes warnings and errors to the configured log handlers, both when they occur within the process loop and when `Handle Errors.vi` is called explicitly on a process wire outside of it.
 
 Additionally the following life cycle changes are logged as `INFO` level messages.
 

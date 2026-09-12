@@ -1,8 +1,8 @@
 # Triarc and Actor Framework
 
-LabVIEW has already existed for over 30 years and Triarc is not the first framework which has been proposed. Comparing frameworks is not a simple task as different frameworks have merits in different areas. There is simply no such thing as the best framework, it all comes down to who you ask. As of today, there are two frameworks which have achieved a somewhat broad user base. The first is NI Actor Framework is bundled with LabVIEW and is included in the installation of LabVIEW. The second is Delacor DQMH, which is an extenssion and improvement of the NI Queued Message Handler (QMH) template.
+LabVIEW has already existed for over 30 years and Triarc is not the first framework which has been proposed. Comparing frameworks is not a simple task as different frameworks have merits in different areas. There is simply no such thing as the best framework, it all comes down to who you ask. As of today, there are two frameworks which have achieved a somewhat broad user base. The first is NI Actor Framework, which is bundled with LabVIEW and included in the installation of LabVIEW. The second is Delacor DQMH, which is an extension and improvement of the NI Queued Message Handler (QMH) template.
 
-Disclaimer: I tend to be strongly opinionated and I am certainly biased, as I would not have created Triarc if I thought there was better alternatives out there for me.
+Disclaimer: I tend to be strongly opinionated and I am certainly biased, as I would not have created Triarc if I thought there were better alternatives out there for me.
 
 ## Brief Introduction to Actor Framework
 
@@ -28,7 +28,7 @@ In Triarc the actors are however called processes to avoid confusion.
 
 The main difference is that messages in Actor Framework are objects implementing the [command pattern](https://en.wikipedia.org/wiki/Command_pattern), while Triarc uses the string and variant message cluster used by the Queued Message Handler template.
 
-This section will go through some of the design decissions in the two frameworks and how they differ.
+This section will go through some of the design decisions in the two frameworks and how they differ.
 For a better understanding, it is worth exploring the Coffee Shop example which ships with LabVIEW (called Actor Framework Fundamentals) and the counterpart implemented in Triarc.
 
 ### Messaging

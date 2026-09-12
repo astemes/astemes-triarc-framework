@@ -5,7 +5,7 @@ Comparing frameworks is not a simple task as different frameworks have merits in
 There is simply no such thing as the best framework, it all comes down to who you ask.
 As of today, there are two frameworks which have achieved a somewhat broad user base.
 The first is NI Actor Framework is bundled with LabVIEW and is included in the installation of LabVIEW.
-The second is Delacor DQMH, which is an extenssion and improvement of the NI Queued Message Handler (QMH) template.
+The second is Delacor DQMH, which is an extension and improvement of the NI Queued Message Handler (QMH) template.
 
 Disclaimer:
 I tend to be strongly opinionated and I am certainly biased, as I would not have created Triarc if I thought there was better alternatives out there for me.
@@ -35,7 +35,7 @@ A DQMH module corresponds to a Triarc Process, or to be more precise a Triarc Vi
 DQMH goes pretty far to avoid object orientation, which may make the framework more approachable for very junior developers.
 Triarc is object oriented by design and each process is a subclass of the Triarc Process class.
 
-This section will go through some of the design decissions in the two frameworks and how they differ.
+This section will go through some of the design decisions in the two frameworks and how they differ.
 For a better understanding, it is worth exploring the Thermal Chamber example which ships with DQMH and the counterpart implemented in Triarc.
 
 ### The Actor Model
@@ -93,7 +93,7 @@ The lack of global state makes it very straight forward to instantiate multiple 
 ### Dryness
 
 In software engineering there is a principle of not repeating the logic when writing code ([the Dry principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)).
-While one has to be pragmatic and make decissions which fits the design, having duplicate logic means having duplicate bugs and duplicate code to maintain.
+While one has to be pragmatic and make decisions which fit the design, having duplicate logic means having duplicate bugs and duplicate code to maintain.
 
 In DQMH every module carries with it the full framework.
 One might argue that this is not an issue, as all the framework VIs are generated through scripting.
@@ -114,7 +114,7 @@ In Triarc breaking changes will need to be solved by namespacing the framework w
 Whether object orientation is good or bad is beyond the scope of this post, but it does have a significant impact on the design.
 Triarc relies heavily on object oriented design, while DQMH only uses objects for certain subtasks.
 
-One clear drawback of using a library over a class in LabVIEW, is the fact tha libraries are not first class citizens in LabVIEW whilde classes are.
+One clear drawback of using a library over a class in LabVIEW, is the fact that libraries are not first class citizens in LabVIEW while classes are.
 This means that a class may be wired on the block diagram just as any other data type, while a library cannot be used in the same way.
 The implications of this is that libraries cannot be composed into larger composite structures.
 Triarc processes are classes and therefore composeable.

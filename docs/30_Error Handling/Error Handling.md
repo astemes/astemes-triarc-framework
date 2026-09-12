@@ -13,18 +13,18 @@ The interface requires the implementer to override the `Handle Errors.vi` to imp
 The Process class also derives from the `Error Handler Interface`, but the actual handling of the error is delegated to the configured error handler.
 In this way, error handling may be invoked by calling the `Handle Errors.vi` on any process wire.
 
-The `Location` input to the `Handle Errors.vi` is used to specify where the error occured.
+The `Location` input to the `Handle Errors.vi` is used to specify where the error occurred.
 When an error occurs within the `Handle Messages.vi` of a process, the location contains the qualified name of the process followed by the message handled while encountering the error.
 
 ## Setting an Error Handler
 
-An error handler may be configured for a process using hte `Set Error Handler` VI.
-This works recursively for processes within an application, regardless of wheter the process was added to the application before or after the error handler was configured.
+An error handler may be configured for a process using the `Set Error Handler` VI.
+This works recursively for processes within an application, regardless of whether the process was added to the application before or after the error handler was configured.
 
-![Setting an error handelr](img/setting_an_error_handler.png)
+![Setting an error handler](img/setting_an_error_handler.png)
 
-After setting the error handler, any error occuring within the process loop will be delegated to the `Handle Errors.vi` of the configured error handler.
-This makes it possible for an error handler, which *e.g.* displays any occuring error while testing, to be replaced by something more appropriate for production.
+After setting the error handler, any error passed to `Handle Errors.vi` - whether it occurs within the process loop or is passed explicitly on another process wire - will be delegated to the `Handle Errors.vi` of the configured error handler.
+This makes it possible for an error handler, which *e.g.* displays any occurring error while testing, to be replaced by something more appropriate for production.
 
 ## Error Handling in an Application
 
@@ -38,4 +38,4 @@ If a certain process needs to override the error handling, another error handler
 ## Logging Errors 
 
 The concepts of error handling and logging are separated in Triarc and an error handler should in most cases not be responsible for logging errors.
-The responsibility of logging should generally be implemented by a log handler, as it is often useful to know the context of errors occuring.
+The responsibility of logging should generally be implemented by a log handler, as it is often useful to know the context of errors occurring.

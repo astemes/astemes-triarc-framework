@@ -60,5 +60,5 @@ If process A is added to application B, then B is the context of A.
 If application B is further nested in applcation C, the context of A is still B, but the context of B is C.
 If application C is the top level application, it does not have a context.
 
-Tracking the context of a process is usefull as it allows for communicating from the process back to the caller.
+Tracking the context of a process is useful as it allows for communicating from the process back to the caller.
 To make the communication useful, the process will need to make some assertions on the context in which it runs, *e.g.* that it implements a given interface.
