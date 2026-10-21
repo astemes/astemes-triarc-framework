@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" modified="2020-08-12T16:49:57.052Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" etag="NGTFs9urtVIj8KUB4fxQ" version="13.6.2" type="github">
+  <diagram id="3hSYd5DLYMAEnRjdyXJk" name="Page-1">
+    <mxGraphModel dx="952" dy="1137" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-1" value="Rig" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="304" y="50" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-2" value="HAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="120" y="100" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-3" value="Rig Process" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="290" y="100" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-4" value="HAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="140" y="110" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-6" value="Rig Process" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="310" y="110" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-7" value="UI Communication" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#FF3333;fillColor=#FFCCCC;" parent="1" vertex="1">
+          <mxGeometry x="440" y="110" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-8" value="Rig Control &lt;br&gt;User Interface" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="300" y="200" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-9" value="UI Process" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCFF;strokeColor=#660066;" parent="1" vertex="1">
+          <mxGeometry x="210" y="270" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-10" value="UI View" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFFF;strokeColor=#006666;" parent="1" vertex="1">
+          <mxGeometry x="60" y="270" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-11" value="UI View" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFFF;strokeColor=#006666;" parent="1" vertex="1">
+          <mxGeometry x="70" y="280" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-12" value="UI Process" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCFF;strokeColor=#660066;" parent="1" vertex="1">
+          <mxGeometry x="220" y="280" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-13" value="Rig Communication" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#FF3333;fillColor=#FFCCCC;" parent="1" vertex="1">
+          <mxGeometry x="350" y="270" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-14" value="Data Record" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffe6cc;" parent="1" vertex="1">
+          <mxGeometry x="480" y="270" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qsh98J9LOzWR0aIyXqNO-15" value="Live Data" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;" parent="1" vertex="1">
+          <mxGeometry x="600" y="270" width="110" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
