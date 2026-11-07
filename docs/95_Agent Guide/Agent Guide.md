@@ -50,8 +50,7 @@ In `.lvclass` XML, `<Item Type="Parent">` lists only the direct parent and the i
   - The **Default case must call the parent** (`Call Parent Class Method`).
   - A message that no class handles gives error 9503.
   - The process loop is the only place where class data may be unbundled and bundled.
-- **The parent `Stop` handling always stops the process, even when an error is wired in.** Wiring the error from, for example, a `Disconnect` into the parent `Stop` is correct for a process.
-  **For an `Application` it is not:** the `Application` `Stop` handling passes the incoming error to `Stop.vi` of each owned process, and `Stop.vi` does nothing when it receives an error. The application stops, but its processes keep running until `Clear.vi` terminates them. Handle or clear the error before calling the parent `Stop` in an application.
+- **The parent `Stop` handling always stops the process, even when an error is wired in.** Wiring the error from, for example, a `Disconnect` into the parent `Stop` is correct.
 - **Handle each message atomically.** Don't send messages to yourself to build multi-step behaviour, because other messages can interleave. Sending to self from inside the loop gives warning 9508, and requesting from self gives error 9507. Use state plus a helper loop or an async handler instead.
 
 ## API VIs
@@ -171,7 +170,7 @@ VIs are binary files. The labview-mcp tools or a similar LabVIEW integration can
 - In an export, framework calls appear as `target="TF.lvlib\3AProcess.lvclass\3A<VI>.vi"`, where `\3A` is `:`.
 - To trace messages, grep for `Get Lifecycle State`, `Send Message`, `Request Message` and `CaseFrame selector=`.
 - The first load of a class member loads the whole class hierarchy and can take minutes.
-- Exporter quirks to confirm on the real diagram before you report a bug: a For-loop `count` that references its own uid, `mode="index"` on scalar tunnels, and `cond=` on output tunnels.
+- Exporter quirks to confirm on the real diagram before you report a bug: a For-loop `count` that references its own uid, `mode="index"` on scalar tunnels, `cond=` on output tunnels, an error register shown as a `ShiftReg`, and For-loop iteration parallelism, which is not shown at all.
 - Don't save framework VIs in `vi.lib`. Changes there are lost on the next package install.
 
 ## Review Pitfalls
@@ -179,7 +178,8 @@ VIs are binary files. The labview-mcp tools or a similar LabVIEW integration can
 Don't report these as findings:
 
 - **A key missing from the configuration file.** It is added with its default.
-- **An error wired into the parent `Stop` of a process.** The process stops anyway. In an `Application`, it is a finding: the owned processes are not stopped.
+- **An error wired into the parent `Stop` of a process.** The process stops anyway.
+- **Stops or starts that look chained through a loop's error wire.** The loop in `Stop Processes.vi` uses an error register and parallel iterations, so one failing process does not block the others. An AIXML export shows the error register as a shift register.
 - **A message name that differs from the API VI name.** Check that the two sides match each other, not that they match the VI name.
 - **A misspelled message or key name.** It may be live: report it, but don't fix one side only.
 - **`TRIARC_ERROR_IN` / `TRIARC_ERROR_OUT` terminal names.** They come from the scripting tools.
