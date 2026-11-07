@@ -1,42 +1,56 @@
 # Messaging
 
-The main communication channel in Triarc is based on message passing to a process.
+The main communication channel in Triarc is passing messages to a process.
 
 ## The Messaging API
 
-The messaging API is relatively simple, as seen below.
+The messaging API is small, as seen below.
 
 ![messaging api](img/messaging_api.png)
 
-There is no priority levels to be configured and messages are received in the order they are sent.
-Additionally, the method for receiving messages is private to the `Process` class and is only used in the process loop.
+| VI | Description |
+|---|---|
+| `Send Message.vi` | Enqueues a message to the process. Returns immediately. |
+| `Request Message.vi` | Enqueues a request and waits for the response. See [Requests](../29_Requests/Requests.md). |
+| `Async Request Message.vi` | Enqueues a request. The response is delivered to a `Callback`. See [Requests](../29_Requests/Requests.md). |
+| `Response Message.vi` | Sends the response to a request, from the case that handles the request. |
+| `Enqueue Message.vi` | Deprecated. Use `Send Message.vi`. |
+
+All these VIs are protected, so they can only be called from the class and its descendants.
+A message is a string, `Message`, and a variant, `Message Data`.
+
+There are no priority levels, and messages are handled in the order they are sent.
+The VI that receives messages is private to the `Process` class and is only used in the process loop.
 
 ## Sending Messages
 
-A regular message is sent to the process using the `Send Message.vi` and the message is received in the Handle Messages VI of the process.
-Upon receiving a message the process may execute some logic, change its state data, launch new processes, broadcast a message, and so on.
+A message is sent to the process with `Send Message.vi`, and it is received in `Handle Messages.vi` of the process.
+When it receives a message, the process may run some logic, change its state data, launch new processes, broadcast a message, and so on.
 
-In general the message handling should be atomic, implementing the full functionality in one of the cases of `Handle Messages.vi`.
-This is because there is no guarantee that other messages will not be interleaved if one API call sends several messages.
+Handle each message atomically, implementing the full functionality in one case of `Handle Messages.vi`.
+There is no guarantee that other messages are not handled in between if one API call sends several messages.
 
-## Messaging throught the Lifecycle
+## Messaging through the Lifecycle
 
-Messages may be sent both while a process is running and before it is started.
-Messages sent before starting a process will not be handled before starting the process.
+Messages may be sent both while a process is running and before it has been started.
+Messages sent before the process is started are not handled until it is started.
 
-When the process starts, the first message to be handled is always the framework defined `Init` message.
-After this all messages sent before starting the process is handled, and then the `Start` message is handled.
+When the process starts, the first message handled is always the framework's `Init` message.
+Then all messages sent before the process was started are handled, and then the `Start` message.
 
-When stopping a process, a `Stop` message is sent.
-Messages sent after calling the `Stop.vi` method, but before the `Stop` message is handled will be handled before the process finishes.
-This is meant to allow for controlled and clean stopping of the process and if the process must be terminated quickly, the `Clear.vi` guarantees immediate termination.
+`Stop.vi` sends a `Stop` message.
+Messages sent after `Stop.vi` was called, but before the `Stop` message is handled, are handled before the process finishes.
+This allows a controlled and clean stop. If a process must be terminated quickly, `Clear.vi` terminates it immediately.
 
-If a process is stopped, it is still possible to send messages to it, but these will not be handled unless the process is started again.
-Restarting a process is a fully supported use case.
+Messages can still be sent to a stopped process, but they are not handled unless the process is started again.
+Restarting a process is fully supported.
 
-## Type safety
+## Type Safety
 
-Message specification is restricted to the class handling the messages.
-The fact that the messaging VI:s are protected enforces the process to implement an API VI which enqueues the message and this VI should in general hard code the message string and enforce the expected data type for the message data.
-This pattern protects from misstyping the message string and ensures the expected data type is sent.
-It also enforces a clear and robust high-level API to be defined, which is useful for both testing and readability.
+The messages of a process are defined by the class that handles them.
+Since the messaging VIs are protected, each message needs an API VI that enqueues it.
+The API VI should hard code the message string and enforce the data type of the message data.
+This protects against misspelled message strings and makes sure the expected data type is sent.
+It also gives the process a clear, robust high level API, which helps both testing and readability.
+
+See [Handling Messages](../26_Handling%20Messages/Handling%20Messages.md#api-vis) for the API VI pattern.
