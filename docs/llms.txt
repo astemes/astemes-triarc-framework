@@ -1,0 +1,33 @@
+# Astemes Triarc Framework
+
+> A LabVIEW framework for applications built from concurrent processes that communicate with messages, requests and broadcasts. Installed with VIPM into <vi.lib>\Astemes\Triarc Framework\ (TF.lvlib).
+
+Agents reading or changing code built on Triarc should start with the Agent Guide.
+
+## Agent guide
+
+- [Agent Guide](https://astemes.github.io/astemes-triarc-framework/95_Agent%20Guide/Agent%20Guide/): Rules, facts, error codes and review pitfalls for agents, in one page
+
+## Documentation
+
+- [Getting Started](https://astemes.github.io/astemes-triarc-framework/15_Getting%20Started/Getting%20Started/): Create a first application and process
+- [Process](https://astemes.github.io/astemes-triarc-framework/22_Process/Process/): Lifecycle, process loop and configuration
+- [Application](https://astemes.github.io/astemes-triarc-framework/23_Application/Application/): Composing processes, qualified names
+- [View](https://astemes.github.io/astemes-triarc-framework/24_View/View/): Processes with a front panel
+- [Handling Messages](https://astemes.github.io/astemes-triarc-framework/26_Handling%20Messages/Handling%20Messages/): Handle Messages.vi and API VIs
+- [Messaging](https://astemes.github.io/astemes-triarc-framework/27_Messaging/Messaging/): Sending messages
+- [Broadcasting](https://astemes.github.io/astemes-triarc-framework/28_Broadcasting/Broadcasting/): One-to-many events
+- [Requests](https://astemes.github.io/astemes-triarc-framework/29_Requests/Requests/): Request and response
+- [Error Handling](https://astemes.github.io/astemes-triarc-framework/30_Error%20Handling/Error%20Handling/): Error handlers and framework error codes
+- [Logging](https://astemes.github.io/astemes-triarc-framework/35_Logging/Logging/): Log handlers and levels
+- [Helper Loops](https://astemes.github.io/astemes-triarc-framework/40_Helper%20Loops/Helper%20Loops/): Periodic parallel work
+- [Async Handler](https://astemes.github.io/astemes-triarc-framework/45_Async%20Handler/Async%20Handler/): Blocking work off the process loop
+- [Testing](https://astemes.github.io/astemes-triarc-framework/60_Testing/Testing/): The Triarc test suite
+- [Configuration](https://astemes.github.io/astemes-triarc-framework/80_Configuration/Configuration/): Configuration files
+- [Best Practices](https://astemes.github.io/astemes-triarc-framework/90_Best%20Practices/Best%20Practices/)
+
+## Optional
+
+- [Source code](https://github.com/Astemes/astemes-triarc-framework)
+- [Examples](https://github.com/Astemes/astemes-triarc-examples)
+- [Debugger](https://github.com/Astemes/astemes-triarc-debugger)

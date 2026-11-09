@@ -1,39 +1,52 @@
 # Introduction to Triarc Framework
 
-This document gives a brief introduction to and a high level overview of the Triarc Framework (`TF`).
-The framework is developed and maintained by Astemes and is released under and open source license. 
+This page gives a short introduction to the Triarc Framework (`TF`) and an overview of its main ideas.
+The framework is developed and maintained by Astemes and is released under an open source license.
 
 ## What is Triarc Framework
 
-The framework is an application framework useful for developing concurrent applications in LabVIEW
-Core abstractions for `Processes`, `Applications`, and `Views` are provided by the framework.
-These may be extended to implement sophisticated applications. 
+Triarc is an application framework for building concurrent applications in LabVIEW.
+It provides three core abstractions: `Processes`, `Applications`, and `Views`.
+You extend these classes to build your own applications.
 
-The framework provides communication channels between processes and manages their lifecycles.
-Boilerplate for error handling, logging and configuration management is also provided by the framework.
+The framework manages the lifecycle of every process and the communication channels between processes.
+It also provides the boilerplate for error handling, logging and configuration management.
 
-The API to a `TF` process is similar to the API of an instrument driver, and should for this reason feel familiar to any LabVIEW developer.
-An example is shown below, where the active lifecycle of the process would be during the while loop.
-From within the while loop, the user of the process would interract with it using API calls. 
+The API of a `TF` process looks like the API of an instrument driver, so it should feel familiar to any LabVIEW developer.
+In the example below, the process is initialized and started before the while loop, used through its API inside the loop, and stopped and cleared after the loop.
 
 ![Triarc API Example](img/api.png)
 
-`TF` is based on the proven actor model, which is a very powerful way of managing distributed processing.
-The design goal of `TF` is to provide all the benefits of an actor based system, while maintaining a simple API and reducing unnecessary complexity. 
+`TF` is based on the actor model, a proven way of managing concurrent and distributed processing.
+The design goal is to give you the benefits of an actor based system, with a simple API and without unnecessary complexity.
 
-The design is test driven, and because of this modules built on `TF` are testable and may be created to adhere to SOLID design principles.
+The framework is developed test first.
+Modules built on `TF` are testable, and they can be designed to follow the SOLID principles.
+
+## Core Concepts
+
+| Concept | In short | Read more |
+|---|---|---|
+| Process | An actor: a class with private state and a message loop managed by the framework. | [Process](../22_Process/Process.md) |
+| Application | A process that owns other processes and manages their lifecycle. | [Application](../23_Application/Application.md) |
+| View | A process with a front panel. | [View](../24_View/View.md) |
+| Message | A string and a variant, sent to a process through an API VI. | [Messaging](../27_Messaging/Messaging.md) |
+| Request | A message that waits for, or calls back with, a response. | [Requests](../29_Requests/Requests.md) |
+| Broadcast | A one-to-many notification from a process to anyone who registered. | [Broadcasting](../28_Broadcasting/Broadcasting.md) |
+| Helper Loop | A periodic action running in parallel to a process. | [Helper Loops](../40_Helper%20Loops/Helper%20Loops.md) |
+| Async Handler | A blocking or slow action running in parallel to a process. | [Async Handler](../45_Async%20Handler/Async%20Handler.md) |
 
 ## Why Yet Another Framework?
 
-There are well established frameworks available in the LabVIEW ecosystem, most notably NI Actor Framework and DQMH.
-Each of these have their own benefits and drawbacks, but neither seemed to fit well for our needs and workflow. 
-Thus a test rig architecture grew through and after a few incarnations, a generic high level framework could be extracted, to be further distilled, tested and improved.
+There are well established frameworks in the LabVIEW ecosystem, most notably NI Actor Framework and DQMH.
+Each has its own benefits and drawbacks, but neither fitted our needs and workflow well.
+A test rig architecture grew over a few incarnations, and from it a generic high level framework could be extracted, distilled, tested and improved.
 
 Triarc processes are composable, independent, and testable.
-The framework encourages modularity and allows for composition of applications out of smaller single responsibility processes.
-Robust communication is implemented and each process life cycle is managed by the framework.
-Entry points are provided by the framework for error handling and logging, and a powerfull debugger is available.
+The framework encourages modularity and lets you compose applications out of small processes, each with a single responsibility.
+Communication between processes is robust, and the framework manages the lifecycle of each process.
+The framework provides entry points for error handling and logging, and a powerful debugger is available.
 
-Even if there might not be a great demand for a new framework, there was no reason to keep Triarc private or closed.
-By releasing it as open source, proper version management is enforced and publicly available.
-Releasing it as open source is valueable for all users of the framework and gives room for anyone to contribute both ideas and code.
+There may not be a great demand for a new framework, but there was no reason to keep Triarc private or closed.
+Releasing it as open source enforces proper, publicly available version management.
+It is valuable for all users of the framework, and anyone can contribute both ideas and code.
