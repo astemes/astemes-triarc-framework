@@ -75,7 +75,9 @@ Right-click a process class and select **Generate API VI...** to create one. See
 
 - `Request Message.vi` blocks, with a timeout in ms. `Async Request Message.vi` takes a `Callback` and does not block.
 - The receiver answers with `Response Message.vi` in the case that handles the request. It must be called on **every** path, including on error, or the caller waits for the full timeout (error 9505).
-- Calling `Response Message.vi` outside the case that received the request gives error 9510.
+- A long request can be answered from an async action launched from the case that handles it, so the process loop stays free. The action then responds on every path, and the case does not respond. `Leave Process Loop.vi` on the action's class data does not prevent the response.
+- Respond exactly once: a second response before the first is read replaces it.
+- A response that cannot be delivered, for example after the request timed out, gives error 9510.
 - An error in the handling is returned to the caller as error 9515.
 - A request to a process that is not running gives error 9506, and a process that stops during a request gives error 9502.
 - Make the timeout longer than the worst-case handling time. A timeout of `-1` waits forever, so avoid it for hardware.
@@ -125,6 +127,7 @@ See [Configuration](../80_Configuration/Configuration.md).
   - The launch must be called from inside the process loop, or it gives error 9509.
   - Use it for blocking I/O, network calls, waiting on hardware and delayed messages.
   - Each launch runs the action once, and its errors go to the error handler of the process.
+  - An action launched from a request case can call `Response Message.vi` to answer that request.
   - **The framework does not stop a running async action when the process stops.** A long action must stop by itself.
 - **The class data in both is a snapshot from the launch.** It does not see later state changes and cannot change the state of the process.
   - Report back by calling API VIs. In an async action, call `Leave Process Loop.vi` on the class data first.

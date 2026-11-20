@@ -9,7 +9,7 @@ In addition, the request message type can be used for blocking and non-blocking 
 Sometimes it is useful to make a synchronous request to a process.
 When something should be returned from the process to the sender of a message, use `Request Message.vi`.
 The process that receives the request must call `Response Message.vi` to return a response to the requester.
-`Response Message.vi` must be called from the case in `Handle Messages.vi` that handles this specific message, as shown below.
+`Response Message.vi` is called from the case in `Handle Messages.vi` that handles this specific message, as shown below, or from an async action launched from that case (see [Responding from an Async Handler](#responding-from-an-async-handler)).
 
 ![handling a request](img/request_handling.png)
 
@@ -24,6 +24,7 @@ If the type has to change, the API VI changes, which gives a compile-time error 
 ### Rules for Requests
 
 - **Respond on every path.** The case handling a request must call `Response Message.vi` also when an error occurred. Otherwise the requester waits until its timeout expires.
+- **Respond exactly once.** The requester keeps only one response. A second response sent before the first is read replaces it.
 - **Pass errors back.** An error wired into `Response Message.vi` is returned to the requester as error 9515, The Request caused an error in the process.
 - **Choose a timeout longer than the work.** The default timeout, -1, waits forever. Use a finite timeout for anything that talks to hardware or the network.
 - **Do not request from yourself.** A request from inside the process loop to the same process would wait for itself. It returns error 9507.
@@ -35,8 +36,24 @@ If the type has to change, the API VI changes, which gives a compile-time error 
 | 9505 | The request timed out. `Timed out?` is also true. |
 | 9506 | The process is not running. |
 | 9507 | Request to self from inside the process loop. |
-| 9510 | `Response Message.vi` was not called from the case receiving the request, or the request had already timed out. |
+| 9510 | The response could not be delivered, for example because the request had already timed out. |
 | 9515 | The process returned an error with the response. |
+
+## Responding from an Async Handler
+
+Some requests take a long time to handle, for example a move that waits for hardware.
+Handling them in the case would block the process loop, so the process could not handle other messages, such as a stop, until the request is done.
+
+Instead, the case that receives the request can start the work and launch an [Async Handler](../45_Async%20Handler/Async%20Handler.md), and the async action calls `Response Message.vi` when the work is done.
+The requester waits as usual, but the process loop is free to handle other messages in the meantime.
+
+- The response is carried by the class data that is passed to `Launch Async Handler.vi`, so launch the action from the case that receives the request.
+- The action can respond at any time, also after the process has handled other messages, and also after `Leave Process Loop.vi` has been called on the class data.
+- The case must not respond when it has launched an action that responds. The action must respond on every path, including errors and cancellation.
+- If the case decides not to launch the action, for example because the request is rejected, it responds itself.
+- Choose the requester's timeout to cover the whole operation, not only the time in the case.
+
+A helper loop cannot respond to a request, because it is not launched from the case that receives the request.
 
 ## Asynchronous Requests
 

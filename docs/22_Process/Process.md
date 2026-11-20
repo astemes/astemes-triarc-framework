@@ -125,7 +125,7 @@ The same process object can be used both inside the process loop, in `Handle Mes
 | `Handle Message` | The VI is called from inside the process loop. It should do the work directly and must not send messages to its own process. |
 
 Some framework methods are only allowed in one of the modes.
-`Launch Helper Loop.vi`, `Launch Async Handler.vi`, `Stop Helper Loops.vi` and `Response Message.vi` must be called from inside the process loop (error 9509).
+`Launch Helper Loop.vi`, `Launch Async Handler.vi` and `Stop Helper Loops.vi` must be called from inside the process loop (error 9509).
 `Request Message.vi` must not be called from inside the process loop of the process it requests from, because it would wait for itself (error 9507).
 
 The `API Mode` is carried by value on the process wire.

@@ -32,6 +32,13 @@ The example below shows how the `Application` class launches an async handler to
 - **The framework does not stop a running async action when the process stops.**
   An action that may run for a long time must stop by itself, for example by watching for the `Lifecycle` broadcast of the process or by polling `Get Lifecycle State.vi`.
 
+## Responding to Requests
+
+An async action launched from the case that handles a request can answer the request with `Response Message.vi`.
+This keeps the process responsive while a long request is handled; the requester still waits for the response.
+The action must then respond on every path, and the case must not respond as well.
+See [Responding from an Async Handler](../29_Requests/Requests.md#responding-from-an-async-handler).
+
 ## State Data
 
 As for [helper loops](../40_Helper%20Loops/Helper%20Loops.md#state-data), the class data in `Async Action.vi` is a snapshot from when the action was launched.

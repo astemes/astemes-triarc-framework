@@ -19,7 +19,7 @@ Each case should:
 
 1. convert `Message Data` to the expected type with `Variant To Data`,
 2. do the work, typically by calling the API VI that sent the message, or a subVI with the core logic,
-3. if the message was a request, call `Response Message.vi` on every path, including when an error occurred.
+3. if the message was a request, call `Response Message.vi` on every path, including when an error occurred, or launch an async action that responds (see [Requests](../29_Requests/Requests.md#responding-from-an-async-handler)).
 
 Each message should be handled atomically, in one case.
 Avoid sending messages from `Handle Messages.vi` to the process itself: other messages may be handled in between.

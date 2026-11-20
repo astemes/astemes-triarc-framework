@@ -13,7 +13,7 @@ The messaging API is small, as seen below.
 | `Send Message.vi` | Enqueues a message to the process. Returns immediately. |
 | `Request Message.vi` | Enqueues a request and waits for the response. See [Requests](../29_Requests/Requests.md). |
 | `Async Request Message.vi` | Enqueues a request. The response is delivered to a `Callback`. See [Requests](../29_Requests/Requests.md). |
-| `Response Message.vi` | Sends the response to a request, from the case that handles the request. |
+| `Response Message.vi` | Sends the response to a request, from the case that handles the request or from an async action launched from that case. |
 | `Enqueue Message.vi` | Deprecated. Use `Send Message.vi`. |
 
 All these VIs are protected, so they can only be called from the class and its descendants.

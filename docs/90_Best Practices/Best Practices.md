@@ -53,6 +53,7 @@ When you rename a message, rename both the string in the API VI and the case in 
 
 The case that handles a request must call `Response Message.vi` on every path, including the error paths.
 Otherwise the requester waits until its timeout expires.
+If the case hands the work to an async action, the action must respond on every path instead, and the case must not respond as well.
 Give requests a timeout that is longer than the worst-case time to handle them, and avoid infinite timeouts for requests that involve hardware.
 
 ## Prefer broadcasts over requests from views
