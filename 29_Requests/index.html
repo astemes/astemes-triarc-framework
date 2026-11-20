@@ -1,0 +1,1066 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Anton Sundqvist">
+      
+      
+        <link rel="canonical" href="http://astemes.com/29_Requests/">
+      
+      
+        <link rel="prev" href="../28_Broadcasting/">
+      
+      
+        <link rel="next" href="../30_Error%20Handling/">
+      
+      
+      <link rel="icon" href="../Style/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
+    
+    
+      
+        <title>Requests - Astemes Triarc Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../Style/style.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#requests-and-responses" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Astemes Triarc Framework" class="md-header__button md-logo" aria-label="Astemes Triarc Framework" data-md-component="logo">
+      
+  <img src="../Style/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Astemes Triarc Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Requests
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/astemes/astemes-triarc-framework" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Astemes Triarc Framework" class="md-nav__button md-logo" aria-label="Astemes Triarc Framework" data-md-component="logo">
+      
+  <img src="../Style/logo.png" alt="logo">
+
+    </a>
+    Astemes Triarc Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/astemes/astemes-triarc-framework" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_Getting%20Started/Getting%20Started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20_Framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Framework
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21_Base/Base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22_Process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Process
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23_Application/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24_View/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    View
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../26_Handling%20Messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Handling Messages
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../27_Messaging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Messaging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../28_Broadcasting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Broadcasting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Requests
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requests
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#synchronous-requests-and-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synchronous Requests and Responses
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Synchronous Requests and Responses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rules-for-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rules for Requests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responding-from-an-async-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Responding from an Async Handler
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous Requests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-requests-prior-to-version-1024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous Requests prior to Version 1.0.24
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../30_Error%20Handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Error Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../35_Logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../40_Helper%20Loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helper Loops
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../45_Async%20Handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Async Handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../60_Testing/Testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70_Debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Debugging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../80_Configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../90_Best%20Practices/Best%20Practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Best Practices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../91_Design%20Discussion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Design Discussion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../92_Triarc%20and%20Actor%20Framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Triarc and Actor Framework
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../93_Triarc%20and%20DQMH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Triarc and DQMH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../95_Agent%20Guide/Agent%20Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#synchronous-requests-and-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synchronous Requests and Responses
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Synchronous Requests and Responses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rules-for-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rules for Requests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responding-from-an-async-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Responding from an Async Handler
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous Requests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-requests-prior-to-version-1024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous Requests prior to Version 1.0.24
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="requests-and-responses">Requests and Responses</h1>
+<p>A Triarc application consists of processes that run independently and communicate by exchanging messages.
+Broadcasts can be used to publish the result of handling a message.
+In addition, the request message type can be used for blocking and non-blocking requests, as described below.</p>
+<h2 id="synchronous-requests-and-responses">Synchronous Requests and Responses</h2>
+<p>Sometimes it is useful to make a synchronous request to a process.
+When something should be returned from the process to the sender of a message, use <code>Request Message.vi</code>.
+The process that receives the request must call <code>Response Message.vi</code> to return a response to the requester.
+<code>Response Message.vi</code> is called from the case in <code>Handle Messages.vi</code> that handles this specific message, as shown below, or from an async action launched from that case (see <a href="#responding-from-an-async-handler">Responding from an Async Handler</a>).</p>
+<p><img alt="handling a request" src="img/request_handling.png" /></p>
+<p>A request is a serialized operation: <code>Request Message.vi</code> blocks until a response is returned or the timeout expires.
+If a request is made from another process, that process is stuck waiting for the response and cannot handle any other message while it waits.
+This introduces a risk of deadlocks and other quirks of concurrent systems, so use requests with care.</p>
+<p>The Triarc request-response pattern keeps coupling low, because the request and the response are implemented entirely in the responding class, which exposes the request API VI.
+Changing the implementation only requires changes to the responding class, as long as the returned data type stays the same.
+If the type has to change, the API VI changes, which gives a compile-time error in the callers instead of a hidden bug.</p>
+<h3 id="rules-for-requests">Rules for Requests</h3>
+<ul>
+<li><strong>Respond on every path.</strong> The case handling a request must call <code>Response Message.vi</code> also when an error occurred. Otherwise the requester waits until its timeout expires.</li>
+<li><strong>Respond exactly once.</strong> The requester keeps only one response. A second response sent before the first is read replaces it.</li>
+<li><strong>Pass errors back.</strong> An error wired into <code>Response Message.vi</code> is returned to the requester as error 9515, The Request caused an error in the process.</li>
+<li><strong>Choose a timeout longer than the work.</strong> The default timeout, -1, waits forever. Use a finite timeout for anything that talks to hardware or the network.</li>
+<li><strong>Do not request from yourself.</strong> A request from inside the process loop to the same process would wait for itself. It returns error 9507.</li>
+<li><strong>Only request from running processes.</strong> A request to a process that is not started or running returns error 9506.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9502</td>
+<td>The process was stopped while the request was waiting.</td>
+</tr>
+<tr>
+<td>9505</td>
+<td>The request timed out. <code>Timed out?</code> is also true.</td>
+</tr>
+<tr>
+<td>9506</td>
+<td>The process is not running.</td>
+</tr>
+<tr>
+<td>9507</td>
+<td>Request to self from inside the process loop.</td>
+</tr>
+<tr>
+<td>9510</td>
+<td>The response could not be delivered, for example because the request had already timed out.</td>
+</tr>
+<tr>
+<td>9515</td>
+<td>The process returned an error with the response.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="responding-from-an-async-handler">Responding from an Async Handler</h2>
+<p>Some requests take a long time to handle, for example a move that waits for hardware.
+Handling them in the case would block the process loop, so the process could not handle other messages, such as a stop, until the request is done.</p>
+<p>Instead, the case that receives the request can start the work and launch an <a href="../45_Async%20Handler/Async%20Handler.md">Async Handler</a>, and the async action calls <code>Response Message.vi</code> when the work is done.
+The requester waits as usual, but the process loop is free to handle other messages in the meantime.</p>
+<ul>
+<li>The response is carried by the class data that is passed to <code>Launch Async Handler.vi</code>, so launch the action from the case that receives the request.</li>
+<li>The action can respond at any time, also after the process has handled other messages, and also after <code>Leave Process Loop.vi</code> has been called on the class data.</li>
+<li>The case must not respond when it has launched an action that responds. The action must respond on every path, including errors and cancellation.</li>
+<li>If the case decides not to launch the action, for example because the request is rejected, it responds itself.</li>
+<li>Choose the requester's timeout to cover the whole operation, not only the time in the case.</li>
+</ul>
+<p>A helper loop cannot respond to a request, because it is not launched from the case that receives the request.</p>
+<h2 id="asynchronous-requests">Asynchronous Requests</h2>
+<p>In some cases a synchronous request is acceptable or even desirable, but in many situations a blocking wait for a response is not.
+The recommended way to solve this in Triarc is <code>Async Request Message.vi</code>, introduced in version 1.0.24.</p>
+<p>In addition to the <code>Message</code> string and the <code>Message Data</code> variant, <code>Async Request Message.vi</code> takes a <code>Callback</code>.
+<code>Callback</code> is an interface with one method, <code>Callback.vi</code>, which receives the response message and data.
+When the receiving process calls <code>Response Message.vi</code>, the <code>Callback.vi</code> of the object passed to <code>Async Request Message.vi</code> is called.</p>
+<p>This is a very powerful way to implement requests, as it does not couple the callee directly to the caller.
+There is an indirect coupling, though: if the data or formatting of the response changes, it may break the function of the caller.</p>
+<p>A common implementation is to let the requesting process implement <code>Callback</code>, and have its <code>Callback.vi</code> send the response to the requesting process as a message.
+<code>Callback.vi</code> is called by <code>Response Message.vi</code>, so it runs in the process loop of the responding process.
+It should return quickly, and it must not access the data of the requesting process directly.
+If the requesting process passes itself as <code>Callback</code> from inside its own process loop, call <code>Leave Process Loop.vi</code> on the object first, so that API VIs called on it in <code>Callback.vi</code> send messages.</p>
+<p><code>Request Message.vi</code> is itself built on <code>Async Request Message.vi</code>, with the <code>Synchronous Request Callback</code> class waiting for the response.</p>
+<h2 id="asynchronous-requests-prior-to-version-1024">Asynchronous Requests prior to Version 1.0.24</h2>
+<p>Before <code>Async Request Message.vi</code> existed, asynchronous requests were made from an <a href="../45_Async%20Handler/Async%20Handler.md">Async Handler</a>.
+This still works and is sometimes useful.
+The request API VI is called in <code>Async Action.vi</code>, and <code>Launch Async Handler.vi</code> is called when the request needs to be dispatched.
+The request then runs asynchronously to the process, and the same process can even dispatch several concurrent requests and wait for their responses.</p>
+<p>When the response returns, it is received in <code>Async Action.vi</code>, which can forward it to the process as a regular message.
+Note that the async action runs outside the process loop and cannot change the state of the process directly, but it can send messages to the process that update the state.
+Another caveat is that a change of state in the process is not propagated to a running async action.
+An important advantage of this implementation is that the requesting class decides which message is sent to its process when the response returns.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2021 - 2026 Astemes
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
